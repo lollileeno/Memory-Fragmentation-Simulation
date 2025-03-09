@@ -2,29 +2,31 @@
 import java.util.*;
 public class MemoryManager {
 	
-	 private List<MemoryBlock> memoryBlocks;
+	 private MemoryBlock [] memoryBlocks;
 	
 	 public MemoryManager(int[] blocks) {
-		 this.memoryBlocks = new ArrayList<>();
+		memoryBlocks = new MemoryBlock[blocks.length];
 	        int start = 0;
-	        for (int size : blocks) {
-	            memoryBlocks.add(new MemoryBlock(size, start));
-	            start += size;
+	        for(int i =0 ; i<blocks.length ; i++) {
+	       memoryBlocks[i] = new MemoryBlock(start,blocks[i]);
+	           
+	            start += blocks[i];
 	        }
 	    }
 	 
 	   public void allocateMemory(String processID, int size, int strategy) {
 	        // Implement First-Fit, Best-Fit, Worst-Fit logic based on 'strategy' parameter
 		   switch(strategy) {
-		   case 1:  //first-fit"leena"
+		   case 1:  //first-fit
+			 
 			   
 			   break;
 			   
-		   case 2:   //Best-fit"Almaha"
+		   case 2:   //Best-fit
 			   
 			   break;
 			   
-		   case 3:   //Worst-fit"Shahad"
+		   case 3:   //Worst-fit
 			   
 			   break;
 			   
@@ -34,16 +36,16 @@ public class MemoryManager {
 		   }
 	    }
 
-	    public void deallocateMemory(String processID) {//ghaida
+	    public void deallocateMemory(String processID) {
 	        // Find the process and mark the block as free
 	    }
 	    
-	    public void printFirstMemoryStatus() {//ghaida
+	    public void printFirstMemoryStatus() {
 	        // Display block details
 	    }
 	
 
-	    public void printMemoryStatus() {//ghaida
+	    public void printMemoryStatus() {
 	        // Display block details
 	    }
 	

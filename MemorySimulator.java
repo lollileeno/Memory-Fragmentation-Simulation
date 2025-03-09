@@ -19,7 +19,7 @@ public class MemorySimulator {
 			}				
 	}
 		
-		 System.out.print("Enter the size of each block:");
+		 System.out.print("Enter the size of each block in KB:");
 	        for (int i = 0; i < n; i++) {
 	            blocks[i] = input.nextInt();
 	        }	
