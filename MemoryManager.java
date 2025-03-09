@@ -17,26 +17,36 @@ public class MemoryManager {
 	   public void allocateMemory(String processID, int size, int strategy) {
 	        // Implement First-Fit, Best-Fit, Worst-Fit logic based on 'strategy' parameter
 		   switch(strategy) {
-		   case 1:  //first-fit
-			 
+		   case 1:  //first-fit //TODO: leena
+			 for(int i = 0 ; i<memoryBlocks.length ; i++) {
+				 if(!memoryBlocks[i].isAllocated && memoryBlocks[i].size >= size) {
+					 memoryBlocks[i].processID = processID;
+					 memoryBlocks[i].isAllocated = true;
+					 memoryBlocks[i].internalFragmentation = memoryBlocks[i].size - size;
+					 break;
+				 }
+			 }
 			   
 			   break;
 			   
-		   case 2:   //Best-fit
+		   case 2:   //Best-fit //TODO: almaha
 			   
 			   break;
 			   
-		   case 3:   //Worst-fit
+		   case 3:   //Worst-fit //TODO shahad
+			   
 			   
 			   break;
 			   
 			   default:
+				   System.out.println("ERROR: invalid Strategy!!");
+				   System.exit(0);
 				   
 		   
 		   }
 	    }
 
-	    public void deallocateMemory(String processID) {
+	    public void deallocateMemory(String processID) { //TODO: ghaida
 	        // Find the process and mark the block as free
 	    }
 	    

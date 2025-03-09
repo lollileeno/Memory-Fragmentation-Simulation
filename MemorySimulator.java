@@ -31,8 +31,7 @@ public class MemorySimulator {
 	        MemoryManager manager = new MemoryManager(blocks);
 	        
 	        System.out.println("Memory blocks are created…");
-	        
-	        
+	        manager.printFirstMemoryStatus();	        
 	        int choice;
 	        do {
 	            System.out.println("\n1) Allocate memory");
