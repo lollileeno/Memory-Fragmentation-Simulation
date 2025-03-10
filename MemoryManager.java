@@ -35,19 +35,24 @@ public class MemoryManager {
 			   
 		   case 3:   //Worst-fit //TODO shahad
 			MemoryBlock WorstBlock = null;
-			for(int i = 1 ; i<memoryBlocks.length ; i++)
-				 if(!memoryBlocks[i].isAllocated && memoryBlocks[i].size > WorstBlock)
-					 WorstBlock = memoryBlocks[i];
-			if(WorstBlock.size >= size){
-				WorstBlock.processID = processID;
-				WorstBlock.isAllocated = true;
-				WorstBlock.internalFragmentation = WorstBlock.size - size;
-			}
-			else
-			       System.out.println("ERROR: There is NO available Memory Block size.");	
-			
-			   break;
-			   
+				   
+                        for (int i = 0; i < memoryBlocks.length; i++) 
+                                 if (!memoryBlocks[i].isAllocated && (WorstBlock == null || memoryBlocks[i].size > WorstBlock.size)) 
+                                        WorstBlock = memoryBlocks[i];
+                                   
+                          
+
+    
+                       if (WorstBlock != null && WorstBlock.size >= size) {
+                               WorstBlock.processID = processID;
+                               WorstBlock.isAllocated = true;
+                               WorstBlock.internalFragmentation = WorstBlock.size - size;
+                       } 
+		       else 
+                            System.out.println("ERROR: There is NO available Memory Block large enough.");
+    
+
+                       break;
 			   default:
 				   System.out.println("ERROR: invalid Strategy!!");
 				   System.exit(0);
