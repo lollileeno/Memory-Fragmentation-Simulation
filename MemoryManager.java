@@ -34,7 +34,7 @@ public class MemoryManager {
 			   break;
 			   
 		   case 3:   //Worst-fit //TODO shahad
-			MemoryBlock WorstBlock = memoryBlocks[0];
+			MemoryBlock WorstBlock = null;
 			for(int i = 1 ; i<memoryBlocks.length ; i++)
 				 if(!memoryBlocks[i].isAllocated && memoryBlocks[i].size > WorstBlock)
 					 WorstBlock = memoryBlocks[i];
