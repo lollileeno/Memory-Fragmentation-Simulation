@@ -34,8 +34,18 @@ public class MemoryManager {
 			   break;
 			   
 		   case 3:   //Worst-fit //TODO shahad
-			   
-			   
+			MemoryBlock WorstBlock = memoryBlocks[0];
+			for(int i = 1 ; i<memoryBlocks.length ; i++)
+				 if(!memoryBlocks[i].isAllocated && memoryBlocks[i].size > WorstBlock)
+					 WorstBlock = memoryBlocks[i];
+			if(WorstBlock.size >= size){
+				WorstBlock.processID = processID;
+				WorstBlock.isAllocated = true;
+				WorstBlock.internalFragmentation = WorstBlock.size - size;
+			}
+			else
+			       System.out.println("ERROR: There is NO available Memory Block size.");	
+			
 			   break;
 			   
 			   default:
