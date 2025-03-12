@@ -9,7 +9,7 @@ public class MemoryManager {
 		memoryBlocks = new MemoryBlock[blocks.length];
 		int start = 0;
 		for (int i = 0; i < blocks.length; i++) {
-			memoryBlocks[i] = new MemoryBlock(start, blocks[i]);
+			memoryBlocks[i] = new MemoryBlock(blocks[i], start);
 
 			start += blocks[i];
 		}
