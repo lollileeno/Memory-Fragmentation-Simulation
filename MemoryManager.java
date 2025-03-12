@@ -1,4 +1,3 @@
-
 import java.util.*;
 
 public class MemoryManager {
@@ -19,13 +18,17 @@ public class MemoryManager {
 		// Implement First-Fit, Best-Fit, Worst-Fit logic based on 'strategy' parameter
 		switch (strategy) {
 		case 1: // first-fit //TODO: leena
+			boolean allocated = false;
 			for (int i = 0; i < memoryBlocks.length; i++) {
 				if (!memoryBlocks[i].isAllocated && memoryBlocks[i].size >= size) {
 					memoryBlocks[i].processID = processID;
 					memoryBlocks[i].isAllocated = true;
 					memoryBlocks[i].internalFragmentation = memoryBlocks[i].size - size;
+					allocated = true;
 					break;
 				}
+				if(!allocated)
+					System.out.println("ERROR: there is no suitable memory block!!");
 			}
 
 			break;
