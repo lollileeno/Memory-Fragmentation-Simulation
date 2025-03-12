@@ -29,7 +29,7 @@ public class MemorySimulator {
 
 		MemoryManager manager = new MemoryManager(blocks);
 
-		System.out.println("Memory blocks are created…");
+		System.out.println("Memory blocks are created...");
 		manager.printFirstMemoryStatus();
 		int choice;
 		do {

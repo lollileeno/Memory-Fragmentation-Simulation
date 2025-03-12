@@ -1,4 +1,3 @@
-import java.util.*;
 
 public class MemoryManager {
 
@@ -17,7 +16,9 @@ public class MemoryManager {
 	public void allocateMemory(String processID, int size, int strategy) {
 		// Implement First-Fit, Best-Fit, Worst-Fit logic based on 'strategy' parameter
 		switch (strategy) {
+
 		case 1: // first-fit //TODO: leena
+
 			boolean allocated = false;
 			for (int i = 0; i < memoryBlocks.length; i++) {
 				if (!memoryBlocks[i].isAllocated && memoryBlocks[i].size >= size) {
@@ -26,18 +27,31 @@ public class MemoryManager {
 					memoryBlocks[i].internalFragmentation = memoryBlocks[i].size - size;
 					allocated = true;
 					break;
-				}
+				}}
 				if(!allocated)
 					System.out.println("ERROR: there is no suitable memory block!!");
-			}
+			
 
-			break;
+		break;
 
 		case 2: // Best-fit //TODO: almaha
 
-			break;
+		MemoryBlock BestBlock = null;
+
+			for(int i = 0; i < memoryBlocks.length; i++)
+				if (!memoryBlocks[i].isAllocated && (memoryBlocks[i].size >= size) && (BestBlock == null || memoryBlocks[i].size < BestBlock.size))
+				BestBlock = memoryBlocks[i];
+
+			if(BestBlock != null){
+			BestBlock.processID = processID;
+			BestBlock.isAllocated = true;
+			BestBlock.internalFragmentation = BestBlock.size - size;
+				}else
+					System.out.println("ERROR: There is NO available Memory Block large enough.");
+		break;
 
 		case 3: // Worst-fit //TODO shahad
+
 			MemoryBlock WorstBlock = null;
 
 			for (int i = 0; i < memoryBlocks.length; i++)
@@ -51,7 +65,8 @@ public class MemoryManager {
 			} else
 				System.out.println("ERROR: There is NO available Memory Block large enough.");
 
-			break;
+		break;
+		
 		default:
 			System.out.println("ERROR: invalid Strategy!!");
 			System.exit(0);
@@ -73,30 +88,48 @@ public class MemoryManager {
 	public void printFirstMemoryStatus() {
 		// Display block details
 		System.out.println("Memory blocks:");
-		System.out.println("============================================\n" + //
-				"Block#	 size	 start-end	 status\n" + //
-				"============================================");
+		System.out.println("============================================");
+		System.out.println("Block#   Size    Start-End       Status");
+		System.out.println("============================================");
+	
+		// Loop through each memory block and print its status
 		for (int i = 0; i < memoryBlocks.length; i++) {
-			System.out.println("Block" + i + "	 " + memoryBlocks[i].size + "	 " + memoryBlocks[i].startAddress + "-"
-					+ memoryBlocks[i].endAddress + "	 " + ((memoryBlocks[i].isAllocated) ? "allocated" : "free"));
+			String status = memoryBlocks[i].isAllocated ? "allocated" : "free";
+			
+			// Format and print the block details
+			System.out.printf("Block%-4d %-6d %-15s %-8s\n", 
+					i, 
+					memoryBlocks[i].size, 
+					memoryBlocks[i].startAddress + "-" + memoryBlocks[i].endAddress, 
+					status);
 		}
 		System.out.println("============================================");
-
 	}
 
 	public void printMemoryStatus() {
 		// Display block details
 		System.out.println("Memory blocks:");
-		System.out.println("===============================================================================\n" + //
-				"Block#  size   start-end	 status  ProcessID  InternalFragmentation\n" + //
-				"===============================================================================");
-		for (int i = 0; i < memoryBlocks.length; i++) {
-			System.out.println("Block" + i + "	 " + memoryBlocks[i].size + "	 " + memoryBlocks[i].startAddress + "-"
-					+ memoryBlocks[i].endAddress + ((memoryBlocks[i].isAllocated) ? "     allocated" : "\t free")
-					+ "	 " + memoryBlocks[i].processID + " 		" + memoryBlocks[i].internalFragmentation);
-		}
-		System.out.println("===============================================================================");
+		System.out.println("===============================================================================\n" +
+		"Block#  Size   Start-End   Status      ProcessID   InternalFragmentation\n" +
+		"===============================================================================");
 
-	}
+				
+				for (int i = 0; i < memoryBlocks.length; i++) {
+					// Format the output for better alignment
+					String status = memoryBlocks[i].isAllocated ? "allocated" : "free";
+					String processID = memoryBlocks[i].isAllocated ? memoryBlocks[i].processID : "null";
+					int internalFragmentation = memoryBlocks[i].isAllocated ? memoryBlocks[i].internalFragmentation : 0;
+			
+					System.out.printf("Block%-3d %-6d %-10s%-12s%-12s %-5d\n",
+							i, 
+							memoryBlocks[i].size, 
+							memoryBlocks[i].startAddress + "-" + memoryBlocks[i].endAddress, 
+							status, 
+							processID,
+							internalFragmentation);
+				}
+			
+				System.out.println("===============================================================================");
+			}
 
 }
