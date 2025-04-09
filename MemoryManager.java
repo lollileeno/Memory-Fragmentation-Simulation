@@ -17,10 +17,10 @@ public class MemoryManager {
 		// Implement First-Fit, Best-Fit, Worst-Fit logic based on 'strategy' parameter
 		switch (strategy) {
 
-		case 1: // first-fit //TODO: leena
+		case 1: // first-fit strategy
 
 			boolean allocated = false;
-			for (int i = 0; i < memoryBlocks.length; i++) {
+			for (int i = 0; i < memoryBlocks.length; i++) { //finding the first available and large enough memory block size to allocate the process 
 				if (!memoryBlocks[i].isAllocated && memoryBlocks[i].size >= size) {
 					memoryBlocks[i].processID = processID;
 					memoryBlocks[i].isAllocated = true;
