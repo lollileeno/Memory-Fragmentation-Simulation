@@ -5,7 +5,7 @@ public class MemoryBlock {
 	int endAddress;
 	boolean isAllocated;
 	String processID;
-	int internalFragmentation;
+	int internalFragmentation; //the rest of memory size of the block after allocating a process
 
 	public MemoryBlock(int size, int startAddress) {
 		this.size = size;
