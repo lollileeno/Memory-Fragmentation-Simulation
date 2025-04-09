@@ -7,7 +7,7 @@ public class MemoryManager {
 		memoryBlocks = new MemoryBlock[blocks.length];
 		int start = 0;
 		for (int i = 0; i < blocks.length; i++) {
-			memoryBlocks[i] = new MemoryBlock(blocks[i], start);
+			memoryBlocks[i] = new MemoryBlock(blocks[i], start); //creating the memory blocks
 
 			start += blocks[i];
 		}
@@ -28,53 +28,53 @@ public class MemoryManager {
 					allocated = true;
 					break;
 				}}
-				if(!allocated)
+				if(!allocated) //when there is no available blocke "all memory blocks are allocated or there is no block larger enough"
 					System.out.println("ERROR: there is no suitable memory block!!");
 			
 
 		break;
 
-		case 2: // Best-fit //TODO: almaha
+		case 2: // Best-fit strategy
 
 		MemoryBlock BestBlock = null;
 
-			for(int i = 0; i < memoryBlocks.length; i++)
+			for(int i = 0; i < memoryBlocks.length; i++) //finding and store the best memory block "the minimum enough block"
 				if (!memoryBlocks[i].isAllocated && (memoryBlocks[i].size >= size) && (BestBlock == null || memoryBlocks[i].size < BestBlock.size))
 				BestBlock = memoryBlocks[i];
 
-			if(BestBlock != null){
+			if(BestBlock != null){ //allocate the process to the best block 
 			BestBlock.processID = processID;
 			BestBlock.isAllocated = true;
 			BestBlock.internalFragmentation = BestBlock.size - size;
-				}else
+				}else //when there is no available block "all memory blocks are allocated or there is no block larger enough" 
 					System.out.println("ERROR: There is NO available Memory Block large enough.");
 		break;
 
-		case 3: // Worst-fit //TODO shahad
+		case 3: // Worst-fit strategy
 
 			MemoryBlock WorstBlock = null;
 
-			for (int i = 0; i < memoryBlocks.length; i++)
+			for (int i = 0; i < memoryBlocks.length; i++) //finding and store the worst memory block "the largest enough block"
 				if (!memoryBlocks[i].isAllocated && (WorstBlock == null || memoryBlocks[i].size > WorstBlock.size))
 					WorstBlock = memoryBlocks[i];
 
-			if (WorstBlock != null && WorstBlock.size >= size) {
+			if (WorstBlock != null && WorstBlock.size >= size) { //allocate the process to the worst block 
 				WorstBlock.processID = processID;
 				WorstBlock.isAllocated = true;
 				WorstBlock.internalFragmentation = WorstBlock.size - size;
-			} else
+			} else //when there is no available block "all memory blocks are allocated or there is no block larger enough" 
 				System.out.println("ERROR: There is NO available Memory Block large enough.");
 
 		break;
 		
 		default:
-			System.out.println("ERROR: invalid Strategy!!");
+			System.out.println("ERROR: invalid Strategy!!"); // when the user entered other value to strategy number "in MemorySimulator class"
 			System.exit(0);
 
 		}
 	}
 
-	public void deallocateMemory(String pID) { // TODO: ghaida
+	public void deallocateMemory(String pID) { 
 		// Find the process and mark the block as free
 		for (int i = 0; i < memoryBlocks.length; i++) {
 			if (memoryBlocks[i].processID != null && memoryBlocks[i].processID.equals(pID)) {
