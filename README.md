@@ -5,7 +5,11 @@ In this project, we implemented three well-known memory allocation strategies:
 
 
 • First-Fit: Allocates the first available block that is large enough.
+
+
 • Best-Fit: Allocates the smallest block that can accommodate the process, minimizing waste.
+
+
 • Worst-Fit: Allocates the largest available block, potentially leaving larger free spaces.
 
 The simulation allows users to:
